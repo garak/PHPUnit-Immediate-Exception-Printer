@@ -1,7 +1,7 @@
 <?php
 namespace ScriptFUSIONTest\PHPUnitImmediateExceptionPrinter;
 
-final class CapabilitiesTest extends \PHPUnit_Framework_TestCase
+final class CapabilitiesTest extends \PHPUnit\Framework\TestCase
 {
     public function testSuccess()
     {

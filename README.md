@@ -40,10 +40,25 @@ Not shown: the normal test summary output you're used to seeing at the end of a 
     >
     ```
 
+    If you're using an old phpunit version (i.e. phpunit 5), you need to use the following instead:
+
+    ```xml
+    <phpunit
+        printerClass="ScriptFUSION\PHPUnitImmediateExceptionPrinter\Legacy\ImmediateExceptionPrinter"
+        colors="true"
+    >
+    ```
+
 3. Run the tests! If you didn't update `phpunit.xml` the same options can be specified on the command-line instead.
 
     ```bash
     vendor/bin/phpunit --printer 'ScriptFUSION\PHPUnitImmediateExceptionPrinter\ImmediateExceptionPrinter' --color
+    ```
+
+    As previously stated, in case you're using phpunit 5, use the following instead:
+
+    ```bash
+    vendor/bin/phpunit --printer 'ScriptFUSION\PHPUnitImmediateExceptionPrinter\Legacy\ImmediateExceptionPrinter' --color
     ```
 
 4. Enjoy immediate test execution feedback.
@@ -51,7 +66,7 @@ Not shown: the normal test summary output you're used to seeing at the end of a 
 ## Requirements
 
 * PHP 5.6 or newer.
-* [PHPUnit][PHPUnit] 5.5 or newer. PHPUnit 6 not yet supported.
+* [PHPUnit][PHPUnit] 5.5 or newer.
 
 ## Testing
 

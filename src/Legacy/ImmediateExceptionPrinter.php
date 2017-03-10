@@ -1,7 +1,7 @@
 <?php
-namespace ScriptFUSION\PHPUnitImmediateExceptionPrinter;
+namespace ScriptFUSION\PHPUnitImmediateExceptionPrinter\Legacy;
 
-class ImmediateExceptionPrinter extends \PHPUnit\TextUI\ResultPrinter
+class ImmediateExceptionPrinter extends  \PHPUnit_TextUI_ResultPrinter
 {
     /**
      * The exception thrown by the last test.
@@ -30,7 +30,7 @@ class ImmediateExceptionPrinter extends \PHPUnit\TextUI\ResultPrinter
         'fg-green' => 0,
     ];
 
-    public function startTest(\PHPUnit\Framework\Test $test)
+    public function startTest(\PHPUnit_Framework_Test $test)
     {
         parent::startTest($test);
 
@@ -53,7 +53,7 @@ class ImmediateExceptionPrinter extends \PHPUnit\TextUI\ResultPrinter
         $this->lastColour = $color;
     }
 
-    public function endTest(\PHPUnit\Framework\Test $test, $time)
+    public function endTest(\PHPUnit_Framework_Test $test, $time)
     {
         parent::endTest($test, $time);
 
@@ -62,7 +62,7 @@ class ImmediateExceptionPrinter extends \PHPUnit\TextUI\ResultPrinter
             floor($this->numTestsRun / $this->numTests * 100),
             $this->progress
         ));
-        $this->writeWithColor($this->lastColour, \PHPUnit\Util\Test::describe($test), false);
+        $this->writeWithColor($this->lastColour, \PHPUnit_Util_Test::describe($test), false);
         $this->writePerformance($time);
 
         if ($this->exception) {
@@ -95,7 +95,7 @@ class ImmediateExceptionPrinter extends \PHPUnit\TextUI\ResultPrinter
         // Parse nested exception trace line by line.
         foreach (explode("\n", $exception) as $line) {
             // Print exception name and message.
-            if (!$exception instanceof \PHPUnit\Framework\AssertionFailedError
+            if (!$exception instanceof \PHPUnit_Framework_AssertionFailedError
                 && false !== $pos = strpos($line, ': ')
             ) {
                 $whitespace = str_repeat(' ', $pos + 2);
@@ -118,11 +118,11 @@ class ImmediateExceptionPrinter extends \PHPUnit\TextUI\ResultPrinter
     /**
      * Called when an exception is thrown in the test runner.
      *
-     * @param \PHPUnit\Framework\Test $test
+     * @param \PHPUnit_Framework_Test $test
      * @param \Exception $e
      * @param float $time
      */
-    public function addError(\PHPUnit\Framework\Test $test, \Exception $e, $time)
+    public function addError(\PHPUnit_Framework_Test $test, \Exception $e, $time)
     {
         $this->writeProgressWithColor('fg-red,bold', 'E');
 
@@ -133,11 +133,11 @@ class ImmediateExceptionPrinter extends \PHPUnit\TextUI\ResultPrinter
     /**
      * Called when an assertion fails in the test runner.
      *
-     * @param \PHPUnit\Framework\Test $test
-     * @param \PHPUnit\Framework\AssertionFailedError $e
+     * @param \PHPUnit_Framework_Test $test
+     * @param \PHPUnit_Framework_AssertionFailedError $e
      * @param float $time
      */
-    public function addFailure(\PHPUnit\Framework\Test $test, \PHPUnit\Framework\AssertionFailedError $e, $time)
+    public function addFailure(\PHPUnit_Framework_Test $test, \PHPUnit_Framework_AssertionFailedError $e, $time)
     {
         $this->writeProgressWithColor('fg-red,bold', 'F');
 

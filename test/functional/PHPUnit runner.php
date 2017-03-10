@@ -1,4 +1,4 @@
 <?php
 require_once 'vendor/autoload.php';
 
-PHPUnit_TextUI_Command::main();
+PHPUnit\TextUI\Command::main();
